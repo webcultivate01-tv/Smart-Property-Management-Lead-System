@@ -1,10 +1,20 @@
+import express from "express";
+import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
-import app from "./app.js";
+import authRouter from "./routes/auth.routes.js";
+import cookieParser from "cookie-parser";
 
+const app = express();
 dotenv.config(); 
-
 connectDB();
+
+app.use(express.json());
+app.use(cookieParser());
+app.use(express.urlencoded({ extended: true }));
+app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+
+app.use("/api/auth", authRouter);
 
 const PORT = process.env.PORT || 5000;
 

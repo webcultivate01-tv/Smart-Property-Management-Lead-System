@@ -32,6 +32,10 @@ const adminSchema = new mongoose.Schema(
     otpExpires: {
       type: Date,
     },
+    isOtpVerifed: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true },
 );
